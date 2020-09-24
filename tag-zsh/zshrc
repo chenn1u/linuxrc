@@ -1,0 +1,83 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/home/nchen/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+plugins=(zsh-completions zsh-autosuggestions git history-substring-search extract vi-mode zsh-syntax-highlighting) 
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+export LANG=en_US.UTF-8
+
+export EDITOR='nvim'
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/nchen/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/nchen/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/nchen/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/nchen/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# thefuck
+eval $(thefuck --alias)
+
+# alias
+alias vim="nvim"
+
+# tmux conda
+source /home/nchen/miniconda3/etc/profile.d/conda.sh
+[[ -z $TMUX ]] || conda deactivate; conda activate base
+
+# autojump
+
+# vi mode
+bindkey jk vi-cmd-mode
+
+# autosuggestions
+bindkey ',' autosuggest-accept
+
+alias vim="nvim"
+alias nvi="nvim"
+alias cl="clear"
+alias ex="extract"
+
+# conda
+alias cel="conda env list"
+alias ca="conda activate"
+alias cls="conda list"
+
+# docker
+alias dp="docker ps"
+alias dpa="docker ps -a"
+alias drm="docker rm"
+alias dim="docker images"
+alias dstop="docker stop"
+alias da="docker attach"
+alias dstart="docker start"
+
+# tmux
+alias tnew="tmux new -s"
+alias tsw="tmux select-window -t"
+alias tnw="tmux new-window -n"
+alias ta="tmux attach -t"
+alias tls="tmux ls"
+alias trs="tmux rename-session -t"
+alias tk="tmux kill-session -t"
+
+alias ra="ranger"
+
+# fzf
+export FZF_COMPLETION_TRIGGER='\'
